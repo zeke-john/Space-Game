@@ -1,7 +1,6 @@
 import turtle 
 import time
 import winsound
-import threading
 
 
 Score = 0
@@ -11,13 +10,11 @@ wn = turtle.Screen()
 wn.bgcolor("black")
 wn.title("Space Game")
 wn.bgpic("wp3284832.gif")
-
+wn.tracer()
 
 turtle.register_shape("player.gif")
 turtle.register_shape("enemy.gif")
 turtle.register_shape("boom.gif")
-
-
 
 border_pen = turtle.Turtle()
 border_pen.speed(0)
@@ -26,7 +23,6 @@ border_pen.penup()
 border_pen.setposition(-300, -300)
 border_pen.pendown()
 border_pen.pensize(3)
-
 
 pen = turtle.Turtle()
 pen.speed(0)
@@ -38,7 +34,8 @@ pen.goto(0, 260)
 pen.write("Score: 0", align="center", font=("Courier", 24, "normal"))
 pen.goto(0, 240)
 pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
-
+pen.goto(0, 220)
+pen.write("Score 15 to win", align="center", font=("Courier", 10, "normal"))
 
 
 for side in range (4):
@@ -56,7 +53,6 @@ player.setposition(0,-250)
 player.setheading(90)
 player.speed = 0
 
-
 bullet = turtle.Turtle()
 bullet.color("yellow")
 bullet.shape("triangle")
@@ -69,7 +65,6 @@ bullet.goto(500,500)
 
 bulletspeed = 40
 
-
 enemy = turtle.Turtle()
 enemy.color("red")
 enemy.shape("enemy.gif")
@@ -77,17 +72,17 @@ enemy.penup()
 enemy.speed(0)
 enemy.setposition(-200,250)
 
-enemyspeed = 4.5
+enemyspeed = 6
 
 
 bulletstate = "ready"
 
 def move_left():
-    player.speed = - 8
+    player.speed = - 10
 
 
 def move_right():
-    player.speed = 8
+    player.speed = 10
 
 
 
@@ -121,9 +116,13 @@ wn.onkeypress(move_left, "Left")
 wn.onkeypress(fire_bullet, "space")
 # Alt to pause
 
-
-
 while True:
+
+    wn.update()
+
+    y = bullet.ycor()
+    y += bulletspeed
+    bullet.sety(y)
 
     move_player()
 
@@ -140,16 +139,11 @@ while True:
 
     if enemy.xcor() < - 280:
         y = enemy.ycor()
-        y -=40
+        y -= 40
         enemyspeed*= -1
         enemy.sety(y)
 
-    if bulletstate == "fire":
-        y = bullet.ycor()
-        y += bulletspeed
-        bullet.sety(y)
-
-    if bullet.ycor() > 275:
+    if bullet.ycor() > 270:
         bullet.hideturtle()
         bulletstate = "ready"
 
@@ -161,9 +155,12 @@ while True:
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
         pen.goto(0, 240)
         pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 15 to win", align="center", font=("Courier", 10, "normal"))
+        bullet.hideturtle()
     
 
-    if enemy.ycor() < -275:
+    if enemy.ycor() < - 266:
         bullet.hideturtle()
         enemy.hideturtle()
         player.hideturtle()
