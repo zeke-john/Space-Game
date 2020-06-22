@@ -36,6 +36,8 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Score: 0", align="center", font=("Courier", 24, "normal"))
+pen.goto(0, 240)
+pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
 
 
 
@@ -155,8 +157,10 @@ while True:
         winsound.PlaySound("cartoon007.wav", winsound.SND_ASYNC)
         Score +=1
         pen.clear()
-        pen.goto(0, 245)
+        pen.goto(0, 260)
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
     
 
     if enemy.ycor() < -275:
