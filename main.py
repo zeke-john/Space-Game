@@ -2,7 +2,6 @@ import turtle
 import time
 import winsound
 
-
 Score = 0
 
 
@@ -15,6 +14,7 @@ wn.tracer()
 turtle.register_shape("player.gif")
 turtle.register_shape("enemy.gif")
 turtle.register_shape("boom.gif")
+
 
 border_pen = turtle.Turtle()
 border_pen.speed(0)
@@ -72,6 +72,7 @@ enemy.penup()
 enemy.speed(0)
 enemy.setposition(-200,250)
 
+
 enemyspeed = 6
 
 
@@ -118,6 +119,7 @@ wn.onkeypress(fire_bullet, "space")
 
 while True:
 
+
     wn.update()
 
     y = bullet.ycor()
@@ -161,14 +163,14 @@ while True:
     
 
     if enemy.ycor() < - 266:
-        bullet.hideturtle()
         enemy.hideturtle()
+        bullet.hideturtle()
         player.hideturtle()
         pen.clear()
         pen.goto(0, 260)
         pen.color("red")
         pen.write("You Lose".format("You lose"), align="center", font=("Courier", 24, "normal")) 
-        time.sleep(3)
+        time.sleep(8)
         exit()
 
 
