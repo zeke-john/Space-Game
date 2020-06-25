@@ -67,7 +67,7 @@ bullet.shapesize(0.5,0.5)
 bullet.hideturtle()
 bullet.goto(500,500)
 
-bulletspeed = 40
+bulletspeed = 50
 
 enemy = turtle.Turtle()
 enemy.color("red")
@@ -89,8 +89,6 @@ def move_left():
 
 def move_right():
     player.speed = 10
-
-
 
 def move_player():
      x = player.xcor()
@@ -124,7 +122,6 @@ wn.onkeypress(fire_bullet, "space")
 
 while True:
 
-    wn.update() 
 
 
     border_pen.color("white")   
@@ -156,7 +153,7 @@ while True:
         bullet.hideturtle()
         bulletstate = "ready"
 
-    if bullet.distance(enemy) < 28:
+    if bullet.distance(enemy) < 27.5:
         winsound.PlaySound("cartoon007.wav", winsound.SND_ASYNC)
         Score +=1
         pen.clear()
@@ -164,6 +161,8 @@ while True:
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
         pen.goto(0, 240)
         pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+
+    
     
 
     if enemy.ycor() < - 266:                                                                                                                                                            
@@ -186,7 +185,7 @@ while True:
         pen.write("Level 1 completed".format("level 1 completed"), align="center", font=("Courier", 24, "normal")) 
         time.sleep(3)
         pen.clear()
-        enemy.goto(-200,260)
+        enemy.goto(-200,250)
         level +=1
         Score = 0
     
@@ -194,7 +193,7 @@ while True:
         enemy.shape("boom.gif")                                                                                                                                                           
         winsound.PlaySound("battle003.wav", winsound.SND_ASYNC)
         pen.clear()
-        pen.goto(0, 260)
+        pen.goto(0, 250)
         pen.write("Level 2 completed".format("level 2 completed"), align="center", font=("Courier", 24, "normal")) 
         time.sleep(3)
         pen.clear()
@@ -203,6 +202,7 @@ while True:
         Score = 0
 
     if Score == 20 and level == 3:
+        pen.goto(0, 250)
         enemy.shape("boom.gif")                                                                                                                                                           
         winsound.PlaySound("battle003.wav", winsound.SND_ASYNC)
         pen.clear()
@@ -213,8 +213,9 @@ while True:
         bullet.hideturtle()
         player.hideturtle()
         level +=1
-        Score = 0
-        exit()
+        enemy.shape("boom.gif") 
+        time.sleep(5)
+        exit(code)
 
     if level == 1:
         enemy.shape("enemy.gif")
@@ -243,7 +244,6 @@ while True:
         pen.goto(0, 220)
         pen.write("Score 20 to Win", align="center", font=("Courier", 10, "normal"))
 
-
-
+    wn.update() 
 
 wn.mainloop()

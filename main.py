@@ -14,7 +14,6 @@ wn.tracer()
 turtle.register_shape("player.gif")
 turtle.register_shape("enemy.gif")
 turtle.register_shape("boom.gif")
-turtle.register_shape("2nd_enemy.gif")
 
 
 border_pen = turtle.Turtle()
