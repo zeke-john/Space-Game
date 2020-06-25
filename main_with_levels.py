@@ -122,8 +122,6 @@ wn.onkeypress(fire_bullet, "space")
 
 while True:
 
-
-
     border_pen.color("white")   
 
     y = bullet.ycor()
@@ -149,7 +147,7 @@ while True:
         enemyspeed*= -1
         enemy.sety(y)
 
-    if bullet.ycor() > 270:
+    if bullet.ycor() > 265:
         bullet.hideturtle()
         bulletstate = "ready"
 
@@ -161,6 +159,7 @@ while True:
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
         pen.goto(0, 240)
         pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        bullet.hideturtle()
 
     if enemy.ycor() < - 266:                                                                                                                                                            
         enemy.hideturtle()
@@ -179,7 +178,6 @@ while True:
         player.goto(0,-250)
         enemy.goto(0, 250)
         bullet.goto(500, 500)
-        wn.bgpic("wp3284832.gif")
         enemy.shape("enemy.gif")
         pen.clear()
         pen.color("white")
@@ -237,7 +235,6 @@ while True:
         player.goto(0,-250)
         enemy.goto(0, 250)
         bullet.goto(500, 500)
-        wn.bgpic("wp3284832.gif")
         enemy.shape("enemy.gif")
         pen.clear()
         pen.color("white")
@@ -252,7 +249,6 @@ while True:
         
 
     if level == 1:
-        wn.bgpic("wp3284832.gif")
         enemy.shape("enemy.gif")
         pen.goto(0, 260)
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
@@ -262,7 +258,6 @@ while True:
         pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
 
     if level == 2:
-        wn.bgpic("")
         enemy.shape("2nd_enemy.gif")
         pen.goto(0, 260)
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
