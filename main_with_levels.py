@@ -4,17 +4,20 @@ import winsound
 
 Score = 0
 
+level = 1
+
 
 wn = turtle.Screen()
 wn.bgcolor("black")
 wn.title("Space Game")
 wn.bgpic("wp3284832.gif")
-wn.tracer()
+
 
 turtle.register_shape("player.gif")
 turtle.register_shape("enemy.gif")
 turtle.register_shape("boom.gif")
 turtle.register_shape("2nd_enemy.gif")
+turtle.register_shape("3nd_enemy.gif")
 
 
 border_pen = turtle.Turtle()
@@ -35,8 +38,8 @@ pen.goto(0, 260)
 pen.write("Score: 0", align="center", font=("Courier", 24, "normal"))
 pen.goto(0, 240)
 pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
-pen.goto(0, 220)
-pen.write("Score 15 to win", align="center", font=("Courier", 10, "normal"))
+
+
 
 for side in range (4):
     border_pen.fd(600)
@@ -71,6 +74,7 @@ enemy.shape("enemy.gif")
 enemy.penup()
 enemy.speed(0)
 enemy.setposition(-200,270)
+
 
 
 enemyspeed = 6
@@ -119,7 +123,6 @@ wn.onkeypress(fire_bullet, "space")
 
 while True: 
 
-    wn.update()
 
     border_pen.color("white")   
 
@@ -150,7 +153,7 @@ while True:
         bullet.hideturtle()
         bulletstate = "ready"
 
-    if bullet.distance(enemy) < 25:
+    if bullet.distance(enemy) < 28:
         winsound.PlaySound("cartoon007.wav", winsound.SND_ASYNC)
         Score +=1
         pen.clear()
@@ -158,9 +161,6 @@ while True:
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
         pen.goto(0, 240)
         pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
-        pen.goto(0, 220)
-        pen.write("Score 15 to win", align="center", font=("Courier", 10, "normal"))
-        bullet.hideturtle()
     
 
     if enemy.ycor() < - 266:                                                                                                                                                            
@@ -175,17 +175,72 @@ while True:
         exit()
 
 
-    if Score == 15:
-        border_pen.color("green") 
+    if Score == 10 and level == 1:
         enemy.shape("boom.gif")                                                                                                                                                           
         winsound.PlaySound("battle003.wav", winsound.SND_ASYNC)
-        bullet.hideturtle()
-        player.hideturtle()
+        pen.clear()
+        pen.goto(0, 260)
+        pen.write("Level 1 completed".format("level 1 completed"), align="center", font=("Courier", 24, "normal")) 
+        time.sleep(3)
+        pen.clear()
+        enemy.goto(-200,260)
+        level +=1
+        Score = 0
+    
+    if Score == 15 and level == 2:
+        enemy.shape("boom.gif")                                                                                                                                                           
+        winsound.PlaySound("battle003.wav", winsound.SND_ASYNC)
+        pen.clear()
+        pen.goto(0, 260)
+        pen.write("Level 2 completed".format("level 2 completed"), align="center", font=("Courier", 24, "normal")) 
+        time.sleep(3)
+        pen.clear()
+        enemy.goto(-200,260)
+        level +=1
+        Score = 0
+
+    if Score == 20 and level == 3:
+        enemy.shape("boom.gif")                                                                                                                                                           
+        winsound.PlaySound("battle003.wav", winsound.SND_ASYNC)
         pen.clear()
         pen.goto(0, 260)
         pen.color("green")
         pen.write("You Won!".format("You Won!"), align="center", font=("Courier", 24, "normal")) 
-        time.sleep(3)
+        enemy.hideturtle()
+        bullet.hideturtle()
+        player.hideturtle()
+        level +=1
+        Score = 0
         exit()
+
+    if level == 1:
+        enemy.shape("enemy.gif")
+        pen.goto(0, 260)
+        pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
+
+    if level == 2:
+        enemy.shape("2nd_enemy.gif")
+        pen.goto(0, 260)
+        pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 15 to pass level 2", align="center", font=("Courier", 10, "normal"))
+
+    if level == 3:
+        enemy.shape("3nd_enemy.gif")
+        pen.goto(0, 260)
+        pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 20 to Win", align="center", font=("Courier", 10, "normal"))
+
+
+
 
 wn.mainloop()
