@@ -6,11 +6,10 @@ Score = 0
 
 level = 1
 
-
 wn = turtle.Screen()
 wn.bgcolor("black")
-wn.title("Space Game")
 wn.bgpic("wp3284832.gif")
+wn.title("Space Game")
 wn.tracer()
 
 
@@ -19,6 +18,7 @@ turtle.register_shape("enemy.gif")
 turtle.register_shape("boom.gif")
 turtle.register_shape("2nd_enemy.gif")
 turtle.register_shape("3nd_enemy.gif")
+
 
 
 border_pen = turtle.Turtle()
@@ -162,9 +162,6 @@ while True:
         pen.goto(0, 240)
         pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
 
-    
-    
-
     if enemy.ycor() < - 266:                                                                                                                                                            
         enemy.hideturtle()
         bullet.hideturtle()
@@ -173,8 +170,25 @@ while True:
         pen.goto(0, 260)
         pen.color("red")
         pen.write("You Lose".format("You lose"), align="center", font=("Courier", 24, "normal")) 
-        time.sleep(8)
-        exit()
+        time.sleep(7)
+        level = 1
+        Score = 0
+        enemy.showturtle()
+        bullet.showturtle()
+        player.showturtle()
+        player.goto(0,-250)
+        enemy.goto(0, 250)
+        bullet.goto(500, 500)
+        wn.bgpic("wp3284832.gif")
+        enemy.shape("enemy.gif")
+        pen.clear()
+        pen.color("white")
+        pen.goto(0, 260)
+        pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
 
 
     if Score == 10 and level == 1:
@@ -208,16 +222,37 @@ while True:
         pen.clear()
         pen.goto(0, 260)
         pen.color("green")
-        pen.write("You Won!".format("You Won!"), align="center", font=("Courier", 24, "normal")) 
+        enemy.shape("boom.gif") 
+        pen.write("You Won!".format("You Won!"), align="center", font=("Courier", 24, "normal"))
         enemy.hideturtle()
         bullet.hideturtle()
         player.hideturtle()
-        level +=1
-        enemy.shape("boom.gif") 
-        time.sleep(5)
-        exit(code)
+        level +=1 
+        time.sleep(7)
+        level = 1
+        Score = 0
+        enemy.showturtle()
+        bullet.showturtle()
+        player.showturtle()
+        player.goto(0,-250)
+        enemy.goto(0, 250)
+        bullet.goto(500, 500)
+        wn.bgpic("wp3284832.gif")
+        enemy.shape("enemy.gif")
+        pen.clear()
+        pen.color("white")
+        pen.goto(0, 260)
+        pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
+        pen.goto(0, 240)
+        pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
+        pen.goto(0, 220)
+        pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
+
+        
+        
 
     if level == 1:
+        wn.bgpic("wp3284832.gif")
         enemy.shape("enemy.gif")
         pen.goto(0, 260)
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
@@ -227,6 +262,7 @@ while True:
         pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
 
     if level == 2:
+        wn.bgpic("")
         enemy.shape("2nd_enemy.gif")
         pen.goto(0, 260)
         pen.write("Score: {}".format(Score), align="center", font=("Courier", 24, "normal")) 
