@@ -11,6 +11,7 @@ wn = turtle.Screen()
 wn.bgcolor("black")
 wn.title("Space Game")
 wn.bgpic("wp3284832.gif")
+wn.tracer()
 
 
 turtle.register_shape("player.gif")
@@ -121,7 +122,9 @@ wn.onkeypress(move_left, "Left")
 wn.onkeypress(fire_bullet, "space")
 # Alt to pause
 
-while True: 
+while True:
+
+    wn.update() 
 
 
     border_pen.color("white")   
