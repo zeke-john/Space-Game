@@ -118,6 +118,9 @@ wn.listen()
 wn.onkeypress(move_right, "Right")
 wn.onkeypress(move_left, "Left")
 wn.onkeypress(fire_bullet, "space")
+wn.onkeypress(move_right, "d")
+wn.onkeypress(move_left, "a")
+wn.onkeypress(fire_bullet, "w")
 # Alt to pause
 
 while True:
