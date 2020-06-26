@@ -84,11 +84,11 @@ enemyspeed = 6
 bulletstate = "ready"
 
 def move_left():
-    player.speed = - 10
+    player.speed = - 11
 
 
 def move_right():
-    player.speed = 10
+    player.speed = 11
 
 def move_player():
      x = player.xcor()
@@ -98,8 +98,6 @@ def move_player():
      if x > 274:
          x = 274
      player.setx(x)
-
-
 
 
 def fire_bullet():
@@ -118,6 +116,9 @@ wn.listen()
 wn.onkeypress(move_right, "Right")
 wn.onkeypress(move_left, "Left")
 wn.onkeypress(fire_bullet, "space")
+wn.onkeypress(move_right, "d")
+wn.onkeypress(move_left, "a")
+wn.onkeypress(fire_bullet, "w")
 # Alt to pause
 
 while True:
@@ -147,7 +148,7 @@ while True:
         enemyspeed*= -1
         enemy.sety(y)
 
-    if bullet.ycor() > 265:
+    if bullet.ycor() > 255:
         bullet.hideturtle()
         bulletstate = "ready"
 
