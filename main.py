@@ -72,12 +72,10 @@ enemy.setposition(-200,270)
 
 enemyspeed = 6
 
-
 bulletstate = "ready"
 
 def move_left():
     player.speed = - 10
-
 
 def move_right():
     player.speed = 10
@@ -91,9 +89,6 @@ def move_player():
          x = 274
      player.setx(x)
 
-
-
-
 def fire_bullet():
     global bulletstate
 
@@ -105,7 +100,6 @@ def fire_bullet():
         bullet.setposition(x , y)
         winsound.PlaySound("res/sounds/cartoon016.wav", winsound.SND_ASYNC)
 
-
 wn.listen()
 wn.onkeypress(move_right, "Right")
 wn.onkeypress(move_left, "Left")
@@ -113,7 +107,7 @@ wn.onkeypress(fire_bullet, "space")
 wn.onkeypress(move_right, "d")
 wn.onkeypress(move_left, "a")
 wn.onkeypress(fire_bullet, "w")
-# Alt to pause
+wn.onkeypress(fire_bullet, "Up")
 
 while True:
 
@@ -124,7 +118,6 @@ while True:
     bullet.sety(y)
 
     move_player()
-
 
     x = enemy.xcor()
     x += enemyspeed
@@ -183,7 +176,6 @@ while True:
         pen.goto(0, 220)
         pen.write("Score 10 to pass level 1", align="center", font=("Courier", 10, "normal"))
 
-
     if Score == 10 and level == 1:
         enemy.shape("res/images/boom.gif")                                                                                                                                                           
         winsound.PlaySound("res/sounds/battle003.wav", winsound.SND_ASYNC)
@@ -195,7 +187,7 @@ while True:
         enemy.goto(-200,250)
         level +=1
         Score = 0
-    
+
     if Score == 15 and level == 2:
         enemy.shape("res/images/boom.gif")                                                                                                                                                           
         winsound.PlaySound("res/sounds/battle003.wav", winsound.SND_ASYNC)
