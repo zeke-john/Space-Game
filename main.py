@@ -12,14 +12,11 @@ wn.bgpic("res/images/wp3284832.gif")
 wn.title("Space Game")
 wn.tracer()
 
-
 turtle.register_shape("res/images/player.gif")
 turtle.register_shape("res/images/enemy.gif")
 turtle.register_shape("res/images/boom.gif")
 turtle.register_shape("res/images/2nd_enemy.gif")
 turtle.register_shape("res/images/3nd_enemy.gif")
-
-
 
 border_pen = turtle.Turtle()
 border_pen.speed(0)
@@ -28,6 +25,7 @@ border_pen.penup()
 border_pen.setposition(-300, -300)
 border_pen.pendown()
 border_pen.pensize(3)
+border_pen.hideturtle()
 
 pen = turtle.Turtle()
 pen.speed(0)
@@ -40,13 +38,9 @@ pen.write("Score: 0", align="center", font=("Courier", 24, "normal"))
 pen.goto(0, 240)
 pen.write("Press Alt to pause", align="center", font=("Courier", 12, "normal"))
 
-
-
 for side in range (4):
     border_pen.fd(600)
     border_pen.lt(90)
-
-border_pen.hideturtle()
 
 player = turtle.Turtle()
 player.color("blue")
@@ -75,8 +69,6 @@ enemy.shape("res/images/enemy.gif")
 enemy.penup()
 enemy.speed(0)
 enemy.setposition(-200,270)
-
-
 
 enemyspeed = 6
 
@@ -150,7 +142,7 @@ while True:
         enemyspeed*= -1
         enemy.sety(y)
 
-    if bullet.ycor() > 265:
+    if bullet.ycor() > 259.99:
         bullet.hideturtle()
         bulletstate = "ready"
 
